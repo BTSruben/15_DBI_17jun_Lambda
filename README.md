@@ -58,6 +58,17 @@ sudo chmod +x /usr/local/bin/docker-compose
     sudo yum install git
 ```
 
+- **Logout and Login again**
+
+```bash
+    git clone https://github.com/BTSruben/15_DBI_17jun_Lambda.git
+    mv 15_DBI_17jun_Lambda/* .
+    mkdir spark_docker/data
+    ./start-docker-compose.sh
+```
+
+**WE SHOULD ADD OUR HADOOP SYSTEM !!!! WAIT !!!**
+
 ```bash
     docker exec -it sensor sh -c 'curl -i http://stream.meetup.com/2/rsvps | kafkacat -b kafka:9092 -t stream' &
 ```
