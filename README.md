@@ -2,6 +2,14 @@
   
 [https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets](https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets)
 
+**Alternative ssh using docker**
+
+```bash
+    docker run -it -v <ABSOLUTE_PATH_KEYPAIR>:/mykey.pem --rm kroniak/ssh-client bash
+    chmod 400 /mykey.pem
+    ssh -i /mykey.pem <user@hostname>
+```
+
 **Launch/Describe/Terminate AWS Instance**
 
 ```bash
@@ -19,16 +27,10 @@
 **Installing Docker in Amazon Linux**
 
 ```bash
-    ssh -i <keypair> <user@hostname>
+    ssh -i <keypair> <ec2-user@hostname>
 ```
 
-- Alternative ssh using docker:
-
-```bash
-    docker run -it -v <ABSOLUTE_PATH_KEYPAIR>:/mykey.pem --rm kroniak/ssh-client bash
-    chmod 400 /mykey.pem
-    ssh -i /mykey.pem <user@hostname>
-```
+- Install software
 
 ```bash
     sudo yum update -y
@@ -66,8 +68,6 @@ sudo chmod +x /usr/local/bin/docker-compose
     mkdir spark_docker/data
     ./start-docker-compose.sh
 ```
-
-**WE SHOULD ADD OUR HADOOP SYSTEM !!!! WAIT !!!**
 
 ```bash
     docker exec -it sensor sh -c 'curl -i http://stream.meetup.com/2/rsvps | kafkacat -b kafka:9092 -t stream' &
