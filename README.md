@@ -1,3 +1,10 @@
+**Schema**
+
+
+MEETUP <<< SENSOR >>> KAFKA <<< SPARK >>>> HDFS
+                   kafka:9092          hdfs://namenode:8020
+                 zookeeper:2181
+
 - Live stream meetup data from
   
 [https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets](https://www.meetup.com/meetup_api/docs/stream/2/rsvps/#websockets)
