@@ -1,9 +1,10 @@
 **Schema**
 
-
+```bash
 MEETUP <<< SENSOR >>> KAFKA <<< SPARK >>>> HDFS
                    kafka:9092          hdfs://namenode:8020
                  zookeeper:2181
+```
 
 - Live stream meetup data from
   
