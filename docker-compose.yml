@@ -12,6 +12,7 @@ services:
             SPARK_PUBLIC_DNS: spark
         networks:
             - lampda-network
+            - hadoop
 
     zookeeper:
         image: wurstmeister/zookeeper
@@ -42,6 +43,47 @@ services:
         networks:
             - lampda-network
 
+    namenode:
+      image: swapnillinux/cloudera-hadoop-namenode
+      hostname: namenode
+      container_name: namenode
+      ports:
+        - "8020:8020"
+      networks:
+        - hadoop
+
+    yarnmaster:
+      image: swapnillinux/cloudera-hadoop-yarnmaster
+      hostname: yarnmaster
+      container_name: yarnmaster
+      ports:
+        - "8032:8032"
+        - "8088:8088"
+      networks:
+        - hadoop
+
+    datanode:
+      image: swapnillinux/cloudera-hadoop-datanode
+      hostname: datanode
+      container_name: datanode
+      links:
+        - namenode
+        - yarnmaster
+      networks:
+        - hadoop
+
+    datanode2:
+      image: swapnillinux/cloudera-hadoop-datanode
+      hostname: datanode2
+      container_name: datanode2
+      links:
+        - namenode
+        - yarnmaster
+      networks:
+        - hadoop
+
 networks:
     lampda-network:
+        driver: bridge
+    hadoop:
         driver: bridge
